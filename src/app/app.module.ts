@@ -8,12 +8,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutsModule } from './layouts/layouts.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
-import { ToastrModule } from 'ngx-toastr';
-import { NgxSpinnerModule } from 'ngx-spinner';
+//import { ToastrModule } from 'ngx-toastr';
+//import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -21,6 +21,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     LayoutsComponent,
   ],
   imports: [
+    RouterModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
@@ -28,14 +29,14 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 
     BrowserAnimationsModule,
     LayoutsModule,
-    NgbModule,
+    // NgbModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(),
+    //ToastrModule.forRoot(),
 
     /*ModalModule.forRoot(),*/
     FormsModule,
     ReactiveFormsModule,
-    NgxSpinnerModule,
+    /*NgxSpinnerModule,*/
     //MatStepperModule,
     //Ng2SearchPipeModule,
     //NgxPaginationModule,

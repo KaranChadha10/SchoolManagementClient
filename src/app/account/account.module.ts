@@ -19,7 +19,8 @@ import { ChangepasswordComponent } from './changepassword/changepassword.compone
   ],
   imports: [
     CommonModule,
-    AccountRoutingModule
+    AccountRoutingModule,
+    
   ]
 })
 export class AccountModule { }
