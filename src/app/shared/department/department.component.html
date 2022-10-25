@@ -1,0 +1,96 @@
+<form class="row g-3" [formGroup]="addDepartmentForm"
+      (ngSubmit)="onDepartmentSave()">
+  <div class="col-md-8">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label for="DepartmentName" class="form-label">Department Name*</label>
+        <input formControlName="DepartmentName" class="form-control" id="DepartmentName" type="text"
+               [class.is-invalid]="(addDepartmentForm.get('DepartmentName')!.touched ||
+                                            isDepartmentFormValidated) && addDepartmentForm.get('DepartmentName')!.status != 'VALID'"
+               [class.is-valid]="(addDepartmentForm.get('DepartmentName')!.touched ||
+                                            isDepartmentFormValidated) && addDepartmentForm.get('DepartmentName')!.status == 'VALID'"
+               autocomplete="off" />
+        <div *ngIf="(addDepartmentForm.get('DepartmentName')!.touched || isDepartmentFormValidated)
+                                            && addDepartmentForm.get('DepartmentName')!.errors != null &&
+                                            addDepartmentForm.get('DepartmentName')!.errors!['required']"
+             class="invalid-feedback1">Department Name is required</div>
+      </div>
+      <!--<div class="col-md-6 mb-3">
+      <label for="LastName" class="form-label">LastName*</label>
+      <input formControlName="LastName" class="form-control" id="LastName" type="text" [(ngModel)]="clientUser.lastName"
+             [class.is-invalid]="(addMemberForm.get('LastName')!.touched ||
+                                          IsAddMemberFormValidated) && addMemberForm.get('LastName')!.status != 'VALID'"
+             [class.is-valid]="(addMemberForm.get('LastName')!.touched ||
+                                          IsAddMemberFormValidated) && addMemberForm.get('LastName')!.status == 'VALID'"
+             autocomplete="off" />
+      <div *ngIf="(addMemberForm.get('LastName')!.touched || IsAddMemberFormValidated)
+                                          && addMemberForm.get('LastName')!.errors != null &&
+                                          addMemberForm.get('LastName')!.errors!['required']"
+           class="invalid-feedback1">LastName is required</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="PhoneNo" class="form-label">
+        Phone No.*
+      </label>
+      <input formControlName="PhoneNumber" class="form-control" id="PhoneNumber" [(ngModel)]="clientUser.phoneNumber"
+             type="text"
+             [class.is-invalid]="(addMemberForm.get('PhoneNumber')!.touched || IsAddMemberFormValidated)
+                                               && addMemberForm.get('PhoneNumber')!.status != 'VALID'"
+             [class.is-valid]="(addMemberForm.get('PhoneNumber')!.touched || IsAddMemberFormValidated)
+                                              && addMemberForm.get('PhoneNumber')!.status == 'VALID'"
+             autocomplete="off" />
+      <div *ngIf="(addMemberForm.get('PhoneNumber')!.touched || IsAddMemberFormValidated)
+                                              && addMemberForm.get('PhoneNumber')!.errors != null && addMemberForm.get('PhoneNumber')!.errors!['required']"
+           class="invalid-feedback1">Phone Number is required</div>
+      <div *ngIf="(addMemberForm.get('PhoneNumber')!.touched || IsAddMemberFormValidated)
+                                              && addMemberForm.get('PhoneNumber')!.errors != null && addMemberForm.get('PhoneNumber')!.errors!['pattern']"
+           class="invalid-feedback1">Only numbers can be entered.</div>
+
+    </div>
+    <div class="col-md-6 mb-3">
+      <label class="form-label" for="Email">Email*</label>
+      <input formControlName="Email" class="form-control" id="Email" [(ngModel)]="clientUser.emailAddress"
+             type="text"
+             (change)="addMemberForm_EmailID_Changed()"
+             [pattern]="emailPattern"
+             [class.is-invalid]="(addMemberForm.get('Email')!.touched || IsAddMemberFormValidated) && addMemberForm.get('Email')!.status != 'VALID'"
+             [class.is-valid]="(addMemberForm.get('Email')!.touched || IsAddMemberFormValidated) && addMemberForm.get('Email')!.status == 'VALID'"
+             autocomplete="off" />
+      <div *ngIf="(addMemberForm.get('Email')!.touched || IsAddMemberFormValidated) && addMemberForm.get('Email')!.errors != null && addMemberForm.get('Email')!.errors!['required']" class="invalid-feedback1">Email is required</div>
+      <div *ngIf="(addMemberForm.get('Email')!.touched || IsAddMemberFormValidated) && addMemberForm.get('Email')!.errors != null && addMemberForm.get('Email')!.errors!['pattern']" class="invalid-feedback1">Enter a valid email address</div>
+      <div *ngIf="(addMemberForm.get('Email')!.touched || IsAddMemberFormValidated) && addMemberForm.get('Email')!.errors != null && addMemberForm.get('Email')!.errors!['emailChecking']" class="invalid-feedback1">Checking email...</div>
+      <div *ngIf="(addMemberForm.get('Email')!.touched || IsAddMemberFormValidated) && addMemberForm.get('Email')!.errors != null && addMemberForm.get('Email')!.errors!['emailExist']" class="invalid-feedback1">Email already exists, please enter any other Email</div>
+      <div *ngIf="(addMemberForm.get('Email')!.touched || IsAddMemberFormValidated) && addMemberForm.get('Email')!.errors != null && addMemberForm.get('Email')!.errors!['emailVerify']" class="invalid-feedback1">Verify email with OTP</div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label class="form-label" for="Password">Password*</label>
+      <input formControlName="Password" class="form-control" id="inputname" [(ngModel)]="clientUser.password"
+             type="password"
+             [class.is-invalid]="(addMemberForm.get('Password')!.touched || IsAddMemberFormValidated)
+                                               && addMemberForm.get('Password')!.status != 'VALID'"
+             [class.is-valid]="(addMemberForm.get('Password')!.touched || IsAddMemberFormValidated)
+                                              && addMemberForm.get('Password')!.status == 'VALID'" />
+
+      <div *ngIf="(addMemberForm.get('Password')!.touched || IsAddMemberFormValidated)
+                                              && addMemberForm.get('Password')!.errors != null && addMemberForm.get('Password')!.errors!['required']"
+           class="invalid-feedback1">Password is required</div>
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <label for="organizerMultiple">Assign Businesses</label>
+      <select formControlName="AssignedTo" class="form-select js-choice" id="organizerMultiple" style="height: 100px;"
+              multiple="multiple" size="1" name="organizerMultiple"
+              data-options='{"removeItemButton":true,"placeholder":true}'>
+        <option value="{{business.bidenc}}" *ngFor="let business of clientBusinesses">{{business.name}}</option>
+      </select>
+    </div>-->
+    </div>
+  </div>
+
+</form>
